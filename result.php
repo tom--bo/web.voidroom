@@ -11,8 +11,17 @@ if (!$db_selected){
   die('データベース選択失敗です。'.mysql_error());
 }
 
-if(!intval($_POST['weekday'])) die('Error loading page!');
-if(!intval($_POST['period'])) die('Error loading page!');
+if(!intval($_GET['weekday'])) die('Error loading page!');
+if(!intval($_GET['period'])) die('Error loading page!');
+if(intval($_GET['weekday']) < 1 || intval($_GET['weekday']) > 5) die('Error loading page!');
+if(intval($_GET['period']) > 5 || intval($_GET['period']) < 1) die('Error loading page!');
+if(isset($_GET['checkboxa']) && $_GET['checkboxa'] != '52') die('Error loading page!');
+if(isset($_GET['checkboxb']) && $_GET['checkboxb'] != '53') die('Error loading page!');
+if(isset($_GET['checkboxc']) && $_GET['checkboxc'] != '54') die('Error loading page!');
+if(isset($_GET['checkboxd']) && $_GET['checkboxd'] != '56') die('Error loading page!');
+if(isset($_GET['checkboxf']) && $_GET['checkboxf'] != '60') die('Error loading page!');
+if(isset($_GET['checkboxg']) && $_GET['checkboxg'] != '61') die('Error loading page!');
+if(isset($_GET['checkboxh']) && $_GET['checkboxh'] != '63') die('Error loading page!');
 
 $building_count = 0;
 $building_str = '';
@@ -127,44 +136,44 @@ $plug_level = array(
   );
 
 
-if(isset($_POST['checkboxa'])){
-  $building_str .= 'and (building_no="'.$_POST['checkboxa'].'"';
+if(isset($_GET['checkboxa'])){
+  $building_str .= 'and (building_no="'.$_GET['checkboxa'].'"';
   $building_count +=1;
   $flag_52 = 1;
 }
-if(isset($_POST['checkboxb'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxb'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxb'].'"';
+if(isset($_GET['checkboxb'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxb'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxb'].'"';
   $building_count +=1;
   $flag_53 = 1;
 }
-if(isset($_POST['checkboxc'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxc'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxc'].'"';
+if(isset($_GET['checkboxc'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxc'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxc'].'"';
   $building_count +=1;
   $flag_54 = 1;
 }
-if(isset($_POST['checkboxd'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxd'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxd'].'"';
+if(isset($_GET['checkboxd'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxd'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxd'].'"';
   $building_count +=1;
   $flag_56 = 1;
 }
-if(isset($_POST['checkboxf'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxf'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxf'].'"';
+if(isset($_GET['checkboxf'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxf'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxf'].'"';
   $building_count +=1;
   $flag_60 = 1;
 }
-if(isset($_POST['checkboxg'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxg'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxg'].'"';
+if(isset($_GET['checkboxg'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxg'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxg'].'"';
   $building_count +=1;
   $flag_61 = 1;
 }
-if(isset($_POST['checkboxh'])){
-  if($building_count==0) $building_str .= 'and (building_no="'.$_POST['checkboxh'].'"';
-  else $building_str .= ' or building_no="'.$_POST['checkboxh'].'"';
+if(isset($_GET['checkboxh'])){
+  if($building_count==0) $building_str .= 'and (building_no="'.$_GET['checkboxh'].'"';
+  else $building_str .= ' or building_no="'.$_GET['checkboxh'].'"';
   $building_count +=1;
   $flag_63 = 1;
 }
@@ -172,7 +181,7 @@ $building_str .= ')';
 
 
 
-$result = mysql_query('SELECT subject,week_day,period,building_no,room_no FROM rooms WHERE week_day = "'.$_POST['weekday'].'" and period="'.$_POST['period'].'" '.$building_str);
+$result = mysql_query('SELECT subject,week_day,period,building_no,room_no FROM rooms WHERE week_day = "'.$_GET['weekday'].'" and period="'.$_GET['period'].'" '.$building_str);
 if(mysql_num_rows($result)) echo mysql_num_rows($result); 
 if (!$result) {
   die('クエリーが失敗しました。'.mysql_error());
@@ -204,25 +213,24 @@ if (!$result) {
     ga('send', 'pageview');
   </script>
 
-
 </head>
 <body>
 
 <div data-role="page" id="result">
   <div data-role="header">
-    <form action="result.php" method="post" name="periodminus" style="display: inline;">
+    <form action="result.php" method="GET" name="periodminus" style="display: inline;">
       <?php 
-        if(isset($_POST['checkboxa'])) echo '<input type="hidden" name="checkboxa" value="52">';
-        if(isset($_POST['checkboxb'])) echo '<input type="hidden" name="checkboxb" value="53">';
-        if(isset($_POST['checkboxc'])) echo '<input type="hidden" name="checkboxc" value="54">';
-        if(isset($_POST['checkboxd'])) echo '<input type="hidden" name="checkboxd" value="56">';
-        if(isset($_POST['checkboxf'])) echo '<input type="hidden" name="checkboxf" value="60">';
-        if(isset($_POST['checkboxg'])) echo '<input type="hidden" name="checkboxg" value="61">';
-        if(isset($_POST['checkboxh'])) echo '<input type="hidden" name="checkboxh" value="63">';
+        if(isset($_GET['checkboxa'])) echo '<input type="hidden" name="checkboxa" value="52">';
+        if(isset($_GET['checkboxb'])) echo '<input type="hidden" name="checkboxb" value="53">';
+        if(isset($_GET['checkboxc'])) echo '<input type="hidden" name="checkboxc" value="54">';
+        if(isset($_GET['checkboxd'])) echo '<input type="hidden" name="checkboxd" value="56">';
+        if(isset($_GET['checkboxf'])) echo '<input type="hidden" name="checkboxf" value="60">';
+        if(isset($_GET['checkboxg'])) echo '<input type="hidden" name="checkboxg" value="61">';
+        if(isset($_GET['checkboxh'])) echo '<input type="hidden" name="checkboxh" value="63">';
       ?>
 
-        <input type="hidden" name="weekday" value=<?php echo '"'.$_POST['weekday'].'"'; ?>>
-        <input type="hidden" name="period" value=<?php echo '"'.($_POST['period']-1).'"'; ?>>
+        <input type="hidden" name="weekday" value=<?php echo '"'.$_GET['weekday'].'"'; ?>>
+        <input type="hidden" name="period" value=<?php echo '"'.($_GET['period']-1).'"'; ?>>
         <input type="submit" value="前" data-ajax="false" data-role="button" data-inline="true" data-icon="arrow-l" style="text-align: left;" >
     </form>
 
@@ -230,23 +238,23 @@ if (!$result) {
     <p style="display: inline;" align="center">
     <?php
       $arr_week_day = array('月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日');
-      echo $arr_week_day[$_POST['weekday']-1];
-      echo $_POST['period']."限 の検索結果";
+      echo $arr_week_day[$_GET['weekday']-1];
+      echo $_GET['period']."限 の検索結果";
     ?>
     </p>
-    <form action="result.php" method="post" name="periodplus" style="display: inline;">
+    <form action="result.php" method="GET" name="periodplus" style="display: inline;">
       <?php 
-        if(isset($_POST['checkboxa'])) echo '<input type="hidden" name="checkboxa" value="52">';
-        if(isset($_POST['checkboxb'])) echo '<input type="hidden" name="checkboxb" value="53">';
-        if(isset($_POST['checkboxc'])) echo '<input type="hidden" name="checkboxc" value="54">';
-        if(isset($_POST['checkboxd'])) echo '<input type="hidden" name="checkboxd" value="56">';
-        if(isset($_POST['checkboxf'])) echo '<input type="hidden" name="checkboxf" value="60">';
-        if(isset($_POST['checkboxg'])) echo '<input type="hidden" name="checkboxg" value="61">';
-        if(isset($_POST['checkboxh'])) echo '<input type="hidden" name="checkboxh" value="63">';
+        if(isset($_GET['checkboxa'])) echo '<input type="hidden" name="checkboxa" value="52">';
+        if(isset($_GET['checkboxb'])) echo '<input type="hidden" name="checkboxb" value="53">';
+        if(isset($_GET['checkboxc'])) echo '<input type="hidden" name="checkboxc" value="54">';
+        if(isset($_GET['checkboxd'])) echo '<input type="hidden" name="checkboxd" value="56">';
+        if(isset($_GET['checkboxf'])) echo '<input type="hidden" name="checkboxf" value="60">';
+        if(isset($_GET['checkboxg'])) echo '<input type="hidden" name="checkboxg" value="61">';
+        if(isset($_GET['checkboxh'])) echo '<input type="hidden" name="checkboxh" value="63">';
       ?>
 
-        <input type="hidden" name="weekday" value=<?php echo '"'.$_POST['weekday'].'"'; ?>>
-        <input type="hidden" name="period" value=<?php echo '"'.($_POST['period']+1).'"'; ?>>
+        <input type="hidden" name="weekday" value=<?php echo '"'.$_GET['weekday'].'"'; ?>>
+        <input type="hidden" name="period" value=<?php echo '"'.($_GET['period']+1).'"'; ?>>
         <input type="submit" value="次" data-ajax="false" data-role="button" data-inline="true" data-icon="arrow-r" style="text-align: right;" >
     </form>
 
@@ -260,8 +268,8 @@ if (!$result) {
   <a href="main.php" data-role="button" data-icon="home" data-mini="true" data-inline="true" data-ajax="false">Topへ</a>
   <a href="mailform.php" data-role="button" data-icon="alert" data-mini="true" data-inline="true" data-ajax="false">間違いを通知</a>
   ';
-  if($_POST['period']<=0 || $_POST['period']>6){
-    comment($_POST['period']);
+  if($_GET['period']<=0 || $_GET['period']>6){
+    comment($_GET['period']);
   }
 
   while ($row = mysql_fetch_assoc($result)) {

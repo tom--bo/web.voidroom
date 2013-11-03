@@ -23,6 +23,7 @@
     ga('create', 'UA-44364744-1', 'ddo.jp');
     ga('send', 'pageview');
   </script>
+<script>console.log(">>>>>>>>>>");</script>
 
 </head>
 <body>
@@ -42,7 +43,7 @@
 
   <div data-role="content">
     <p style="display: inline;" >Select Building</p>
-    <form action="result.php" method="post" name="periodplus" style="display: inline;">
+    <form action="result.php" method="get" name="periodplus" style="display: inline;">
       <?php 
         echo '<input type="hidden" name="checkboxa" value="52">';
         echo '<input type="hidden" name="checkboxb" value="53">';
@@ -91,7 +92,7 @@
         <div class="clear"></div>  
       </div>
     
-    <form action="result.php" method="post" name="check_form">
+    <form action="result.php" method="get" name="check_form">
 
       <div data-role="fieldcontain">
         <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">

@@ -38,9 +38,12 @@
   <div data-role="header">
     <a href="main.php" data-icon="home" data-theme="b" data-ajax="false" data-mini="true">理工キャン検索へ</a>
     <h1></h1>
-    <a href="https://itunes.apple.com/jp/app/akibeya/id726767785?mt=8&uo=4" target="itunes_store" data-icon="plus" data-ajax="false" data-mini="true">iPhone版DL</a>
+    <a href="#popup1" data-rel="popup" data-icon="info" class="ui-btn-right" data-iconpos="">アプリ版DL</a>
+    <div data-role="popup" id="popup1">
+      <a href="https://itunes.apple.com/jp/app/akibeya/id726767785?mt=8&uo=4" target="itunes_store" data-role="button" data-icon="star" data-mini="true" data-ajax="false">iPhoneApp</a>
+      <a href="./Akibeya.apk" data-role="button" data-icon="star" data-mini="true" data-ajax="false">AndroidApp</a>
+    </div>
   </div><!-- /header -->
-
 
   <!-- <img src="room_pic/void1.jpg" width="100%"> -->
   <div data-role="content">

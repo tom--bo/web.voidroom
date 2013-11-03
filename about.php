@@ -25,7 +25,6 @@
 </head>
 <body>
 
-
   <div data-role="header">
     <a href="main.php" data-icon="arrow-l" data-ajax="false">Home</a>
     <h1>あきべや</h1>
@@ -49,9 +48,12 @@
     <br>シラバスの情報(https://www.wsl.waseda.jp/syllabus/JAA101.php)をもとにサイトを構築しています。なので、シラバスにない教室の使用、急な教室変更等には対応できていません。
     <br>問い合わせフォームより通知いただければ可能な限り対応する予定です。</p>
 
-    <p> [宣伝] 
-    <br>@rikoh_voidroomで更新情報や訂正情報の発信を行う予定なのでぜひご利用ください。
-    <br>また、11月を目処にスマフォアプリ版のリリースも予定しています！</p>
+    <p> [iPhone,Androidアプリ] 
+    <br>あきべやのアプリが遂に公開出来ましたﾜｰｲヽ(ﾟ∀ﾟ)ﾒ(ﾟ∀ﾟ)ﾒ(ﾟ∀ﾟ)ﾉﾜｰｲ
+    <br>iPhone版はこちら↓↓
+    <br><a href="https://itunes.apple.com/jp/app/akibeya/id726767785?mt=8&uo=4" target="itunes_store" data-role="button" data-icon="star" data-mini="true" data-ajax="false">iPhoneApp</a>
+    <br>Android版はこちら↓↓
+    <br><a href="./Akibeya.apk" data-role="button" data-icon="star" data-mini="true" data-ajax="false">AndroidApp</a>
     <p></p>
     <script type="text/javascript">
       var nend_params = {"media":10803,"site":48409,"spot":99046,"type":1,"oriented":5};
@@ -60,7 +62,7 @@
 
     <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="tomboserver.ddo.jp/voidroom/voidroom.php" data-text="空き教室検索アプリ「あきべや」http://tomboserver.ddo.jp/voidroom/voidroom.php" data-lang="ja" data-hashtags="あきべや">ツイート</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
-    <p>ver: 1.1.8</p>
+    <p>ver: 1.2.1</p>
   </div><!-- /content -->
 
   <div data-role="footer">
